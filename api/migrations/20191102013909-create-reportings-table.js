@@ -21,7 +21,7 @@ exports.up = function(db, cb) {
     phone: 'string',
     description: 'string',
     place_id: 'string',
-    geog: 'geography(POINT)',
+    geog: {type: 'geography(POINT)', notNull: true},
     address: 'string',
     picked_up_by: {
       type: 'uuid', foreignKey: {

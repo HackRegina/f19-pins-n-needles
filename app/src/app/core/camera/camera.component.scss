@@ -1,0 +1,18 @@
+.img-undraw {
+  min-height: 225px;
+  max-height: 225px;
+}
+
+a {
+  text-decoration: underline;
+}
+
+::ng-deep video {
+  width: 100%    !important;
+  height: auto   !important;
+}
+
+::ng-deep canvas {
+  width: 100%    !important;
+  height: auto   !important;
+}
