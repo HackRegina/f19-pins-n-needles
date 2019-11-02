@@ -1,0 +1,46 @@
+version: '2.2'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./api/Dockerfile
+    command: yarn run start:dev
+    volumes:
+      - ./api/src/:/app/api/src/
+      - ./api/migrations/:/app/api/migrations/
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    depends_on:
+      - "db"
+    links:
+      - "db"
+    env_file:
+      - ./api/.env
+    restart: always
+  app:
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    command: yarn run start:dev
+    volumes:
+      - ./app/src/:/app/app/src/
+    ports:
+      - "4200:4200"
+    depends_on:
+      - "api"
+    links:
+      - "api"
+    restart: always
+  db:
+    image: mdillon/postgis:10-alpine
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: supersecret
+      POSTGRES_DB: postgres

@@ -1,0 +1,58 @@
+# Do not change version. This is the version of aws buildspec, not the version of your buldspec file.
+version: 0.2
+env:
+  variables:
+    AWS_ENVIRONMENT: "production"
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+  pre_build:
+    commands:
+      - echo Installing api NPM dependencies...
+      - ( cd api && npm install )
+      - echo Installing app NPM dependencies...
+      - ( cd app && npm install )
+      - echo Installing lambda NPM dependencies...
+  build:
+    commands:
+      - echo Build api started on `date`
+      - ( cd api && npm run build )
+      - echo Run api tests...
+      - ( cd api && npm run test )
+      - echo Build app started on `date`
+      - ( cd app && npm run build -- --prod )
+  post_build:
+    commands:
+      - echo Build completed on `date`
+# Include only the files required for your application to run.
+# Do not use recursively include artifacts from node_modules directory as it will include unnecessary packages
+# used only for building and testing.
+# ExpressJS apps will need other artifact directories included (bin/*, public/*, routes/*, views/* etc).
+artifacts:
+  files:
+    - ./api/dist/**/*
+    - ./api/migrations/*
+    - ./api/migration-scripts/*
+    - ./api/database.json
+    - ./api/wait-for-db.js
+    - ./api/package.json
+    - ./app/dist/**/*
+  secondary-artifacts:
+    ApiArtifact:
+      base-directory: ./api
+      files:
+        - ./dist/**/*
+        - ./migrations/*
+        - ./migration-scripts/*
+        - ./wait-for-db.js
+        - ./database.json
+        - ./package.json
+    AppArtifact:
+      base-directory: ./app/dist
+      files:
+        - ./**/*
+cache:
+  paths:
+    - ./api/node_modules/**/*
+    - ./app/node_modules/**/*
