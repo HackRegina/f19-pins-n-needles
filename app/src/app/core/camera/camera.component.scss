@@ -16,3 +16,9 @@ a {
   width: 100%    !important;
   height: auto   !important;
 }
+
+@media (max-width: 768px) {
+  a {
+    color: #f8f9fa !important;
+  }
+}

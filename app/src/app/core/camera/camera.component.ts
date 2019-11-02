@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportingService } from '../reporting.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-camera',
@@ -13,6 +13,7 @@ export class CameraComponent implements OnInit {
   view: 'welcome' | 'camera' | 'permission' | 'error' | 'thanks' = 'welcome';
   picture: File;
   pictureUrl: string;
+  subscription: Subscription = Subscription.EMPTY;
 
   constructor(private reportingService: ReportingService, private route: ActivatedRoute, private router: Router) { }
 
@@ -69,7 +70,7 @@ export class CameraComponent implements OnInit {
   }
 
   submit() {
-    this.reportingService.submit({
+    this.subscription = this.reportingService.submit({
       ...this.picture,
       value: this.pictureUrl.split(',').pop()
     }).subscribe(() => {
