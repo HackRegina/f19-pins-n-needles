@@ -71,10 +71,11 @@ export class CameraComponent implements OnInit {
 
   submit() {
     this.subscription = this.reportingService.submit({
-      ...this.picture,
+      filename: this.picture.name,
+      filetype: this.picture.type,
       value: this.pictureUrl.split(',').pop()
     }).subscribe(() => {
-      this.router.navigate(['/app', 'camera']);
+      this.router.navigate(['/app', 'thanks']);
     }, () => {
       this.router.navigate(['/app', 'error']);
     });

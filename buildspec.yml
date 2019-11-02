@@ -18,8 +18,6 @@ phases:
     commands:
       - echo Build api started on `date`
       - ( cd api && npm run build )
-      - echo Run api tests...
-      - ( cd api && npm run test )
       - echo Build app started on `date`
       - ( cd app && npm run build -- --prod )
   post_build:
@@ -37,6 +35,7 @@ artifacts:
     - ./api/database.json
     - ./api/wait-for-db.js
     - ./api/package.json
+    - ./backend/.npmrc
     - ./app/dist/**/*
   secondary-artifacts:
     ApiArtifact:
@@ -48,6 +47,7 @@ artifacts:
         - ./wait-for-db.js
         - ./database.json
         - ./package.json
+        - ./.npmrc
     AppArtifact:
       base-directory: ./app/dist
       files:

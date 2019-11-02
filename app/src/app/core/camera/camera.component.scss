@@ -1,3 +1,5 @@
+@import '../../../styles.scss';
+
 .img-undraw {
   min-height: 225px;
   max-height: 225px;
@@ -21,4 +23,8 @@ a {
   a {
     color: #f8f9fa !important;
   }
+}
+
+.bg-light-transparent {
+  background-color: rgba( $light, .5 ) !important;
 }

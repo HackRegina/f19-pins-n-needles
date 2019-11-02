@@ -1,6 +1,6 @@
 FROM node:10
-WORKDIR /app/api/
-COPY ./api/package.json ./api/yarn.lock /app/api/
+WORKDIR /api/
+COPY ./api/package.json ./api/yarn.lock /api/
 RUN yarn
-COPY api /app/api/
+COPY api /api/
 CMD yarn run start:dev

@@ -8,6 +8,7 @@ import { ReportingService } from './reporting/reporting.service';
 import { ReportingEntity } from './reporting/reporting.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './user/user.entity';
+import { ImageService } from './image/image.service';
 
 @Module({
   imports: [
@@ -17,6 +18,6 @@ import { UserEntity } from './user/user.entity';
     ]),
   ],
   controllers: [AccountController, UserController, ReportingController],
-  providers: [AccountService, UserService, ReportingService],
+  providers: [AccountService, UserService, ReportingService, ImageService],
 })
 export class CoreModule {}

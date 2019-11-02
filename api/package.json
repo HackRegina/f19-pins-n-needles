@@ -25,7 +25,9 @@
     "@nestjs/core": "^6.7.2",
     "@nestjs/platform-express": "^6.7.2",
     "@nestjs/typeorm": "^6.2.0",
+    "aws-sdk": "^2.562.0",
     "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.19.0",
     "db-migrate": "^0.11.1",
     "db-migrate-pg": "^0.4.0",
     "dotenv": "^8.2.0",
@@ -34,6 +36,8 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.3",
+    "sharp": "0.23.0",
+    "tsc-watch": "^4.0.0",
     "typeorm": "^0.2.20",
     "wait-for-port": "^0.0.2"
   },

@@ -20,6 +20,7 @@ exports.up = function(db, cb) {
     email: 'string',
     phone: 'string',
     description: 'string',
+    photo_url: 'string',
     place_id: 'string',
     geog: {type: 'geography(POINT)', notNull: true},
     address: 'string',

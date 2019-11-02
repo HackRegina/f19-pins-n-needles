@@ -20,8 +20,9 @@
           <button class="btn btn-light btn-block mt-3" (click)="requestPermissions()"><fa-icon icon="map-marker-alt" class="mr-2"></fa-icon> Enable Geolocation</button>
         </ng-container>
         <ng-container *ngSwitchCase="'camera'">
-          <div class="d-flex" [ngClass]="{'bg-light rounded shadow': picture}">
+          <div class="d-flex" [ngClass]="{'bg-light-transparent rounded shadow': picture}">
             <button type="button" class="btn btn-link text-danger position-absolute"
+              *ngIf="pictureUrl"
               (click)="removePhoto()">
               <fa-icon icon="times"></fa-icon>
             </button>

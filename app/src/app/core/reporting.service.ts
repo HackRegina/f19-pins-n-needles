@@ -63,8 +63,10 @@ export class ReportingService {
   submit(image: any) {
     return new Observable<any>((observer) => {
       navigator.geolocation.getCurrentPosition((position: Position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
         this.http.post(`${environment.baseUrl}/api/v1/reportings`, {
-          position,
+          position: {latitude, longitude},
           image
         }).subscribe((resp) => {
           observer.next(resp);
@@ -72,11 +74,11 @@ export class ReportingService {
         }, () => {
           observer.error(null);
           observer.complete();
-        })
+        });
       }, () => {
         observer.error(null);
         observer.complete();
       });
-    })
+    });
   }
 }
